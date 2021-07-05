@@ -4,7 +4,7 @@
 # https://hub.docker.com/r/showcheap/gitlab-ci-android/
 #
 
-FROM openjdk:8
+FROM openjdk:11
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 
