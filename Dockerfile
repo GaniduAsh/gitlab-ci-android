@@ -1,10 +1,4 @@
-#
-# GitLab CI: Android v0.2
-#
-# https://hub.docker.com/r/showcheap/gitlab-ci-android/
-#
-
-FROM openjdk:11
+FROM openjdk:8
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 
@@ -13,7 +7,7 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 
 RUN mkdir -p ${ANDROID_HOME} && \
     cd ${ANDROID_HOME} && \
-    wget -q https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip -O android_tools.zip && \
+    wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android_tools.zip && \
     unzip android_tools.zip && \
     rm android_tools.zip
 
@@ -21,7 +15,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 
 # Accept Android SDK licenses
 
-RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+RUN yes | sdkmanager --licenses
 
 RUN touch /root/.android/repositories.cfg
 
@@ -32,7 +26,7 @@ RUN sdkmanager "emulator" "tools" "platform-tools"
 # Please keep these in descending order!
 # The `yes` is for accepting all non-standard tool licenses.
 
-RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --update
+RUN yes | sdkmanager --update --channel=3
 # Please keep all sections in descending order!
 RUN yes | sdkmanager \
     "platforms;android-29" \
