@@ -21,7 +21,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 
 # Accept Android SDK licenses
 
-RUN yes | sdkmanager --licenses
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
 RUN touch /root/.android/repositories.cfg
 
