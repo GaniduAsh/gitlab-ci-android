@@ -32,7 +32,7 @@ RUN sdkmanager "emulator" "tools" "platform-tools"
 # Please keep these in descending order!
 # The `yes` is for accepting all non-standard tool licenses.
 
-RUN yes | sdkmanager --update --channel=3
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --update --channel=3
 # Please keep all sections in descending order!
 RUN yes | sdkmanager \
     "platforms;android-29" \
